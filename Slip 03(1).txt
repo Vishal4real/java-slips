@@ -1,0 +1,96 @@
+Q1.
+class Slip3A
+{
+public static void main(String arg[])
+{
+String name[]=new String[10];
+int l=arg.length;
+String temp;
+for(int i=0;i<l;i++)
+{
+name[i]=arg[i];
+}
+for(int j=0;j<l;j++)
+{
+for(int k=j+1;k<l;k++)
+{
+if((name[j].compareTo(name[k]))>0)
+{
+temp=name[j];
+name[j]=name[k];
+name[k]=temp;
+}
+}
+}
+System.out.println("Sorted City Are-");
+for(int i=0;i<l;i++)
+{
+System.out.println(name[i]);
+}
+}
+}
+
+Q2.
+import java.util.*;
+class CovidPositiveException extends Exception
+{
+public CovidPositiveException()
+{
+System.out.println("Patient Is COVID +ve and needs to be Hospitalized");
+}
+}
+class Patient
+{
+String name;
+int age;
+int oxylevel;
+int HRCTreport;
+Slip3B(String name, int age, int oxylevel, int HRCTreport)
+{
+this.name=name;
+this.age=age;
+this.oxylevel=oxylevel;
+this.HRCTreport=HRCTreport;
+}
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("How many patients you want to insert: ");
+int n=sc.nextInt();
+Patient[] ob= new Patient[n];
+for(int j=0;j<n;j++)
+{
+System.out.println("Enter Name: ");
+String name=sc.next();
+System.out.println("Enter Age: ");
+int age=sc.nextInt();
+System.out.println("Enter Oxygen Level: ");
+int oxylevel=sc.nextInt();
+System.out.println("Enter HRCT Report: ");
+int HRCTreport=sc.nextInt();
+ob[j]=new Patient(name,age,oxylevel,HRCTreport);
+}
+
+for(int j=0;j<n;j++)
+{
+if(ob[j].oxylevel<95 && ob[j].HRCTreport>10)
+{
+try
+{
+throw new CovidPositiveException();
+}
+catch(CovidPositiveException e)
+{
+}
+}
+else
+{
+System.out.println(" Name: " +ob[j].name);
+System.out.println(" Age: " +ob[j].age);
+System.out.println(" Oxygen Level: " +ob[j].oxylevel);
+System.out.println(" HCRT Report: " +ob[j].HRCTreport);
+System.out.println("\n"); 
+}
+}
+}
+}

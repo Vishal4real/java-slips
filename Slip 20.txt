@@ -1,0 +1,97 @@
+Q1.
+import java.io.*;
+class Continent
+{
+	String con;
+	BufferedReader r=new BufferedReader(new InputStreamReader(System.in));
+	
+	void con_input() throws IOException
+	{	
+		System.out.println("Enter Conitent Name: ");
+		con =r.readLine();
+	}
+}
+class Country extends Continent
+{
+	String cou;
+	void cou_input() throws IOException
+	{
+		System.out.println("Enter Country Name: ");
+		cou=r.readLine();
+	}
+}
+
+class State extends Country
+{
+	String sta,place;
+	void sta_input() throws IOException
+	{
+		System.out.println("Enter State Name: ");
+		sta=r.readLine();
+		System.out.println("Enter Place Name: ");
+		place= r.readLine();
+	}
+	public static void main(String argsp[] )throws IOException
+	{
+		State s=new State();
+		s.con_input();
+		s.cou_input();
+		s.sta_input();
+		System.out.println(" Continent: "+s.con);
+		System.out.println(" Country: "+s.cou);	
+		System.out.println(" State: "+s.sta);
+		System.out.println(" Place: "+s.place);
+	}
+}
+
+Q2.
+package Operation;
+import java.util.Scanner; 
+public class Addition 
+{
+ 	public static int add(int num1, int num2) 
+	{
+ 		return num1 + num2;
+ 	}
+ 	public static float subtract(float num1, float num2) 
+	{
+ 		return num1 - num2;
+ 	}
+}
+public class Maximum 
+{
+	public static int max(int num1, int num2) 	
+	{
+ 		if (num1 > num2) 
+		{
+ 			return num1;
+ 		} 	
+		else 
+		{
+ 			return num2;
+		}
+ 	}
+}
+public class TestOperation 
+{
+ 	public static void main(String[] args) 
+	{
+ 		Scanner scanner = new Scanner(System.in);
+ 		System.out.println("Enter two integers to add: ");
+ 		int num1 = scanner.nextInt();
+		int num2 = scanner.nextInt();
+ 		int sum = Addition.add(num1, num2);
+		System.out.println("The sum is: " + sum);
+ 		System.out.println("Enter two float values to subtract: ");
+ 		float num3 = scanner.nextFloat();
+ 		float num4 = scanner.nextFloat();
+ 		float difference = Addition.subtract(num3, num4);
+ 		System.out.println("The difference is: " + difference);
+ 		System.out.println("Enter two integers to find the maximum: ");
+ 		int num5 = scanner.nextInt();
+ 		int num6 = scanner.nextInt();
+ 		int maximum = Maximum.max(num5, num6);
+ 		System.out.println("The maximum is: " + maximum);
+ 		scanner.close(); 
+ 	}
+}

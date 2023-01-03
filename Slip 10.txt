@@ -1,0 +1,80 @@
+Q1.
+import java.util.Scanner;
+interface PrintNumber
+{
+		int PrintCubeNumber();
+}
+
+class PrintCube implements PrintNumber
+{
+		int num;
+		PrintCube(int num)
+		{
+			this.num=num;
+		}
+		public int PrintCubeNumber()
+		{
+			return num*num*num;
+		}
+		public static void main(String [] a)
+		{
+			PrintNumber p;
+			Scanner sc=new Scanner(System.in);
+			int n;
+			System.out.println("Please Enter any Number: ");
+			n=sc.nextInt();
+			p=new PrintCube(n);
+			System.out.println("Cube is: "+p.PrintCubeNumber());
+		}
+}	
+
+Q2.
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+class StudentInfo {
+int rollno;
+String name;
+String className;
+float percentage;
+StudentInfo(int rollno, String name, String className, float percentage) {
+this.rollno = rollno;
+this.name = name;
+this.className = className;
+this.percentage = percentage;
+}
+void display() {
+System.out.println("ROLL NO.: " + rollno);
+System.out.println("NAME: " + name);
+System.out.println("CLASS: " + className);
+System.out.println("PERCENTAGE: " + percentage);
+}
+}
+class StudentPer {
+static float findPercentage(int[] marks) {
+float total = 0;
+for (int mark : marks) {
+total += mark;
+}
+return total / marks.length;
+}
+}
+public class Main {
+public static void main(String[] args) throws IOException {
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.print("Enter roll number: ");
+int rollno = Integer.parseInt(br.readLine());
+System.out.print("Enter name: ");
+String name = br.readLine();
+System.out.print("Enter class: ");
+String className = br.readLine();
+int[] marks = new int[6];
+for (int i = 0; i < 6; i++) {
+System.out.print("Enter marks for subject " + (i+1) + ": ");
+marks[i] = Integer.parseInt(br.readLine());
+}
+float percentage = StudentPer.findPercentage(marks);
+StudentInfo student = new StudentInfo(rollno, name, className, percentage);
+student.display();
+}
+}

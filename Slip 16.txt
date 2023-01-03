@@ -1,0 +1,68 @@
+Q1.
+import java.util.Scanner;
+class Square
+{
+ public static void main(String []ar)
+ {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the radius: ");
+	int r=sc.nextInt();
+	int c;
+	c=r*r;
+	System.out.println("Square of a is:"+c);
+ }
+}
+-----------------------------OR-----------------
+import java.util.Scanner;
+
+interface Square 
+{
+    double getSquare(double num);
+}
+public class FSquare 
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        double num = sc.nextDouble();
+        Square square = (double x) -> x * x;
+        System.out.println("The square of " + num + " is " + square.getSquare(num));
+    }
+}
+
+Q2.
+import javax.swing.*;
+import java.awt.*;
+class Slip16B
+{
+JMenu File;
+JMenu Edit;
+JMenu About;
+JMenuItem i1, i2, i3, i4, i5;
+Slip16B(){
+JFrame f= new JFrame("Java AWT Example");
+JMenuBar mb=new JMenuBar();
+File=new JMenu("File");
+Edit=new JMenu("Edit");
+About=new JMenu("About");
+i1=new JMenuItem("New    Ctrl+N");
+i2=new JMenuItem("Open");
+i3=new JMenuItem("Save");
+i4=new JMenuItem("Show About");
+i5=new JMenuItem("Exit");
+File.add(i1); File.add(i2);
+File.add(i3);File.addSeparator();File.add(i4);File.addSeparator();File.add(i5);
+mb.add(File);
+mb.add(Edit);
+mb.add(About);
+f.setJMenuBar(mb);
+f.setSize(400,400);
+f.setLayout(null);
+f.setVisible(true);
+}
+public static void main(String args[])
+{
+new Slip16B();
+}
+}

@@ -1,0 +1,63 @@
+Q1.
+import java.io.BufferedReader;
+import java.io.FileReader;
+public class Slip13A
+{
+public static void main(String[] args) throws Exception {
+String line;
+int count = 0;
+int lineCount = 0;
+//Opens a file in read mode
+FileReader file = new FileReader("data.txt");
+BufferedReader br = new BufferedReader(file);
+//Gets each line till end of file is reached
+while((line = br.readLine()) != null) {
+lineCount++;
+//Splits each line into words
+String words[] = line.split(" ");
+//Counts each word
+count = count + words.length;
+}
+System.out.println("Number of words present in given file: " + count);
+System.out.println("Number of lines present in given file: " + lineCount);
+br.close();
+}
+}
+
+Q2.
+import java.text.SimpleDateFormat;
+import java.util.Date;
+public class DateFormatExample
+{
+	public static void main(String args[])
+	{
+		//This is how you get today's date in java		
+		Date today=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+		String date=df.format(today);
+		System.out.println("\nCurrent Date is: "+date);
+
+		//Another eg of formatting date in java using SimpleDateFormat
+		df=new SimpleDateFormat("MM-dd-yyyy");
+		date=df.format(today);
+		System.out.println("\nCurrent Date is: "+date);
+
+		
+		//formatting date using time information
+		df=new SimpleDateFormat("EEEEE d MM yyyy");
+		date=df.format(today);
+		System.out.println("\nCurrent Date is: "+date);
+		
+
+		//If you print date  you will get formatted output
+		System.out.println("\nCurrent Date and Time is; "+today);
+
+		//formatting date with time information
+		df=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss aaaZ");
+		date=df.format(today);
+		System.out.println("\nCurrent Date and Time is: "+date);
+
+		
+	}
+}
+ 

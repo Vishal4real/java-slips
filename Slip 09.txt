@@ -1,0 +1,139 @@
+Q1.
+import java.util.Scanner;
+class Clock 
+{
+    private int hours;
+    private int minutes;
+    private int seconds;
+    private boolean isAM;
+    public Clock(int hours, int minutes, int seconds) {
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+        // Copy code
+    if (hours >= 12) 
+    {
+        this.isAM = false;
+    } 
+    else
+    {
+        this.isAM = true;
+    }
+}
+public void setTime(int hours, int minutes, int seconds) 
+{
+    if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 && seconds >= 0 && seconds <= 59) 
+    {
+        this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+        // Copy code
+        if (hours >= 12) 
+        {
+        this.isAM = false;
+        } 
+        else 
+        {
+        this.isAM = true;
+        }
+    } 
+    else 
+    {
+        System.out.println("Invalid time input. Please enter valid hours, minutes, and seconds.");
+    }
+}
+public void displayTime() 
+{
+    System.out.print(hours + ":" + minutes + ":" + seconds + " ");
+    if (isAM) 
+    {
+        System.out.println("AM");
+    } 
+    else 
+    {
+        System.out.println("PM");
+    }
+}
+}
+class Main
+{
+    public static void main(String[] args)  
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter hours: ");
+        int hours = sc.nextInt();
+        System.out.print("Enter minutes: ");
+        int minutes = sc.nextInt();
+        System.out.print("Enter seconds: ");
+        int seconds = sc.nextInt();
+        // Copy code
+        Clock clock = new Clock(hours, minutes, seconds);
+        clock.displayTime();
+        System.out.print("Enter new hours: ");
+        hours = sc.nextInt();
+        System.out.print("Enter new minutes: ");
+        minutes = sc.nextInt();
+        System.out.print("Enter new seconds: ");
+        seconds = sc.nextInt();
+         clock.setTime(hours, minutes, seconds);
+         clock.displayTime();
+    }
+}
+
+Q2.
+import java.util.Scanner;
+public class Product implements Cloneable
+{
+static int cnt;
+int pid,qty;
+String pname;
+double pcost;
+
+public Product(int pid,String pname, double pcost, int qty)
+{
+cnt++;
+this.pid=pid;
+this.pname=pname;
+this.pcost=pcost;
+this.qty=qty;
+}
+public Product ()
+{
+cnt++;
+this.pid=0;
+this.pname="";
+this.pcost=0;
+this.qty=0;
+}
+public String toString()
+{
+return pid+"\t"+pname+"\t"+pcost+"\t"+qty;
+}
+public static void main(String args[])throws CloneNotSupportedException
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter Total No. Of product: ");
+		int n=sc.nextInt();
+		Product[] p=new Product [n];
+
+	for(int i=0;i<n;i++)
+	{
+		System.out.print("Enter Product ID: ");
+		int pid=sc.nextInt();
+		System.out.print("Enter Product Name: ");
+		String pname=sc.next();
+		System.out.print("Enter Product Cost: ");
+		double pcost=sc.nextDouble();
+		System.out.print("Enter Product Quantiy: ");
+		int q=sc.nextInt();
+		p[i]=new Product(pid,pname,pcost,q);
+	}
+	System.out.println("-------Product Detail-------");
+	System.out.println("ID	Name	Cost	Quantity");
+	for(int i=0;i<n;i++)
+		System.out.println(p[i]);
+Product p2=(Product) p[0];
+System.out.println(p2);
+System.out.println("Total no. of Product= "+Product.cnt);
+}
+}

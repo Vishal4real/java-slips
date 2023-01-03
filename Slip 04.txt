@@ -1,0 +1,134 @@
+Q1.
+import java.io.*;
+public class Slip4A 
+{
+static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+static int a[][] = new int[5][5];
+public static void main(String[] args) throws NumberFormatException, IOException {
+int m = 0, n = 0;
+System.out.print("Enter number of rows ");
+m = Integer.parseInt(sc.readLine());
+System.out.print("Enter number of columns ");
+n = Integer.parseInt(sc.readLine());
+if (m == n)
+{
+int i, j;
+System.out.println("Enter values for matrix: ");
+for (i = 0; i < m; i++) 
+{
+    for (j = 0; j < n; j++) 
+    {
+        a[i][j] = Integer.parseInt(sc.readLine());
+    }
+}
+System.out.println("Orignal Matrix :");
+for (i = 0; i < m; i++) 
+{
+    for (j = 0; j < n; j++) 
+    {
+        System.out.print("[" + a[i][j] + "]");
+    }
+    System.out.println("");
+}
+int transpose[][] = new int[m][n];
+System.out.println("Transpose of Matrix = ");
+int i3, j3;
+for (i3 = 0; i3 < m; i3++)
+{
+for (j3 = 0; j3 < n; j3++)
+{
+transpose[i3][j3] = a[j3][i3];
+System.out.print("[" + transpose[i3][j3] + "]");
+}
+System.out.println("");
+}
+}
+else
+{
+System.out.println("Rows not equal to columns");
+}
+}
+}
+
+Q2.
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class InvalidPasswordException extends Exception
+{}
+class Slip4B extends JFrame implements ActionListener
+{
+	JLabel name, pass;
+	JTextField nameText;
+	JPasswordField passText;	
+	JButton login, end;
+	static int cnt=0;
+		Slip4B()
+	{
+		name = new JLabel("Name: ");
+		pass = new JLabel("Password: ");	
+		nameText = new JTextField(20);
+		passText = new JPasswordField(20);
+		login = new JButton("Login");
+		end = new JButton("End");
+		login.addActionListener(this);
+		end.addActionListener(this);
+		setLayout(new GridLayout(3,2));
+		add(name);
+		add(nameText);
+		add(pass);
+		add(passText);
+		add(login);
+		add(end);
+		setTitle("Login Check");
+		setSize(300,300);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==end)
+		{
+			System.exit(0);
+		}
+		if(e.getSource()==login)
+		{
+			
+			try
+			{
+				String user = nameText.getText();
+				String pass = new String(passText.getPassword());
+			
+				if(user.compareTo(pass)==0)
+				{
+					JOptionPane.showMessageDialog(null,"Login Succesfull","Login",JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+				else
+				{
+					throw new InvalidPasswordException();
+				}
+			}
+			catch(Exception e1)
+			{
+				cnt++;
+				JOptionPane.showMessageDialog(null,"Login Failed","Login",JOptionPane.ERROR_MESSAGE);
+				nameText.setText("");
+				passText.setText("");
+				nameText.requestFocus();
+				if(cnt == 3)
+				{
+					JOptionPane.showMessageDialog(null,"3 Attempts Over","Login",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
+				}
+			}
+		}
+	
+	}	
+
+public static void main(String args[])
+	{
+		new Slip4B();
+	}
+}

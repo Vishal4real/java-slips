@@ -1,0 +1,116 @@
+Q1.
+import java.util.Scanner;
+class Item 
+{
+ 	private static int objectCount = 0;
+ 	private int itemNumber;
+ 	private String itemName;
+ 	private double itemPrice;
+	public Item() 
+	{
+		objectCount++;
+ 	}
+ 	public Item(int itemNumber, String itemName, double itemPrice) 
+	{
+ 		this.itemNumber = itemNumber;
+ 		this.itemName = itemName;
+		this.itemPrice = itemPrice;
+ 		objectCount++;
+ 	}
+ 	public static int getObjectCount() 
+	{
+ 		return objectCount;
+ 	}
+ 	public void display() 
+	{
+ 		System.out.println("Item Number: " + itemNumber);
+ 		System.out.println("Item Name: " + itemName);
+ 		System.out.println("Item Price: " + itemPrice);
+ 	}
+}
+public class Main 
+{
+ 	public static void main(String[] args) 
+	{
+		Scanner scanner = new Scanner(System.in);
+ 		Item[] items = new Item[3];
+ 		for (int i = 0; i < items.length; i++) 
+		{
+ 			System.out.print("Enter item number: ");
+ 			int itemNumber = scanner.nextInt();
+ 			System.out.print("Enter item name: ");
+ 			String itemName = scanner.next();
+			System.out.print("Enter item price: ");
+ 			double itemPrice = scanner.nextDouble();
+ 			items[i] = new Item(itemNumber, itemName, itemPrice);
+			System.out.println("Number of objects created: " + Item.getObjectCount());
+ 		}
+ 		for (Item item : items) 
+		{
+ 			item.display();
+ 		}
+ 	}
+}
+
+Q2.
+import java.io.*;
+import java.util.*;
+class Donor
+{
+String name, address,group;
+int age, contact, lod;
+public Donor(String Name,String address, String group,int age,int contact,int lod)
+{
+this.name=name;
+this.address=address;
+this.group=group;
+this.age=age;
+this .contact=contact;
+this.lod=lod;
+}
+public static void main(String args[])
+{
+Scanner s=new Scanner(System.in);
+System.out.println("Enter how many records you want");
+int n=s.nextInt();
+try
+{
+ObjectOutputStream o=new ObjectOutputStream(new FileOutputStream("save.txt"));
+Donor d[]=new Donor[n];
+for(int i=0;i<n;i++)
+{
+System.out.println("Name: ");
+String name=s.next();
+System.out.println("Age: ");
+int age=s.nextInt();
+System.out.println("Address: ");
+String address=s.next();
+System.out.println("Contact: ");
+String contact=s.next();
+System.out.println("Group: ");
+String group=s.next();
+System.out.println("Last donation: ");
+int lod=s.nextInt();
+o.writeObject(d[i]);
+}
+}
+catch(IOException e)
+{
+System.out.println(e);
+}
+try
+{
+ObjectInputStream z=new ObjectInputStream(new FileInputStream("save.txt"));
+for(int i=0;i<n;i++)
+{
+Donor d=(Donor)z.readObject();
+if(d.group.equals("A+ve")&&d.lod>=6)
+System.out.println(d);
+}
+}
+catch(Exception e)
+{
+System.out.println(e);
+}
+}
+}

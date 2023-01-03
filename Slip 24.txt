@@ -1,0 +1,83 @@
+Question:1
+public class Main 
+{
+ 	public static void main(String[] args) 
+	{
+ 		BankA bA = new BankA();
+ 		bA.getBalance();
+ 		BankB bB = new BankB();
+ 		bB.getBalance();
+ 		BankC bC = new BankC();
+ 		bC.getBalance();
+ 	}
+}
+abstract class Bank
+{
+	public abstract void getBalance();
+}
+class BankA extends Bank
+{
+	public void getBalance()
+	{
+ 		System.out.println("Deposited: Rs.100 ");
+ 	}
+}
+class BankB extends Bank
+{
+ 	public void getBalance()	
+	{
+ 		System.out.println("Deposited: Rs.150 ");
+	}
+}
+class BankC extends Bank
+{
+ 	public void getBalance()
+	{
+ 		System.out.println("Deposited: Rs.200 ");
+ 	}
+}
+
+
+
+Question:2
+import java.awt.*;
+import java.awt.event.*;
+public class ConcentricCircles extends Frame implements MouseListener 
+{
+ 	int x, y;
+ 	public ConcentricCircles() 
+	{
+ 		addMouseListener(this);
+ 		addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent we) 
+			{
+ 				System.exit(0);
+ 			}
+ 		});
+	}
+	public void paint(Graphics g) 
+	{
+ 		g.setColor(Color.BLACK);
+		g.drawOval(x-50, y-50, 100, 100);
+ 		g.drawOval(x-40, y-40, 80, 80);
+ 		g.drawOval(x-30, y-30, 60, 60);
+ 	}
+ 	public void mouseClicked(MouseEvent me) 
+	{
+ 		x = me.getX();
+ 		y = me.getY();
+ 		repaint();
+ 	}
+	public void mousePressed(MouseEvent me) {}
+ 	public void mouseReleased(MouseEvent me) {}
+ 	public void mouseEntered(MouseEvent me) {}
+ 	public void mouseExited(MouseEvent me) {}
+
+ 	public static void main(String[] args) 
+	{
+ 		ConcentricCircles cc = new ConcentricCircles();
+ 		cc.setSize(400, 400);
+ 		cc.setVisible(true);
+ 	}
+}

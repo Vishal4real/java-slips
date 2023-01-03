@@ -1,0 +1,136 @@
+Q1.
+import java.util.Scanner;
+class Customer 
+{
+ 	public int custno;
+	public String custname;
+ 	public String contactnumber;
+ 	public String custaddr;
+ 	public Customer(int custno, String custname, String contactnumber, String custaddr) 
+	{
+ 		this.custno = custno;
+ 		this.custname = custname;
+ 		this.contactnumber = contactnumber;
+ 		this.custaddr = custaddr;
+ 	}
+ 	public static Customer searchByContactNumber(Customer[] customers, String contactNumber) 
+	{
+ 		for (Customer customer : customers) 
+		{
+ 			if (customer.contactnumber.equals(contactNumber)) 
+			{
+				return customer;
+ 			}
+ 		}
+ 		return null;
+ 	}
+}
+public class Main 
+{
+ 	public static void main(String[] args)
+	{
+ 		Scanner scanner = new Scanner(System.in);
+ 		System.out.print("Enter the number of customers: ");
+ 		int n = scanner.nextInt();
+ 		Customer[] customers = new Customer[n];
+ 		for (int i = 0; i < n; i++) 
+		{
+ 			System.out.println("Enter details for customer " + (i+1) + ":");
+ 			System.out.print("Customer number: ");
+			int custno = scanner.nextInt();
+			scanner.nextLine();
+			System.out.print("Customer name: ");
+ 			String custname = scanner.nextLine();
+ 			System.out.print("Contact number: ");
+ 			String contactnumber = scanner.nextLine();
+ 			System.out.print("Customer address: ");
+ 			String custaddr = scanner.nextLine();
+ 			customers[i] = new Customer(custno, custname, contactnumber, custaddr);
+ 		}
+ 		System.out.print("Enter the contact number to search for: ");
+ 		String contactNumber = scanner.nextLine();
+		Customer customer = Customer.searchByContactNumber(customers,contactNumber);
+ 		if (customer == null) 
+		{
+ 			System.out.println("No customer found with the given contact number.");
+ 		} 
+		else 
+		{
+ 			System.out.println("Customer details:");
+ 			System.out.println("Customer number: " + customer.custno);
+ 			System.out.println("Customer name: " + customer.custname);
+ 			System.out.println("Contact number: " + customer.contactnumber);
+ 			System.out.println("Customer address: " + customer.custaddr);
+ 		}
+ 	}
+}
+
+
+Q2.
+import java.util.Scanner;
+class Vehicle 
+{
+ 	String company;
+ 	int price;
+}
+class LightMotorVehicle extends Vehicle 
+{
+ 	int mileage;
+}
+class HeavyMotorVehicle extends Vehicle 
+{
+ 	int capacityInTons;
+}
+public class Main 
+{
+ 	public static void main(String[] args) 
+	{
+ 		Scanner scanner = new Scanner(System.in);
+ 		System.out.print("Enter number of vehicles: ");
+		int n = scanner.nextInt();
+ 		Vehicle[] vehicles = new Vehicle[n];
+ 		for (int i = 0; i < n; i++) 
+		{
+ 			System.out.print("Enter type of vehicle (1 for Light Motor Vehicle, 2 for Heavy Motor Vehicle): ");
+ 			int type = scanner.nextInt();
+ 			if (type == 1) 
+			{
+ 				vehicles[i] = new LightMotorVehicle();
+ 				System.out.print("Enter company name: ");
+ 				vehicles[i].company = scanner.next();
+				System.out.print("Enter price: ");
+ 				vehicles[i].price = scanner.nextInt();
+ 				System.out.print("Enter mileage: ");
+ 				((LightMotorVehicle)vehicles[i]).mileage = scanner.nextInt();
+ 			} 
+			else if (type == 2) 
+			{
+ 				vehicles[i] = new HeavyMotorVehicle();
+ 				System.out.print("Enter company name: ");
+ 				vehicles[i].company = scanner.next();
+ 				System.out.print("Enter price: ");
+ 				vehicles[i].price = scanner.nextInt();
+ 				System.out.print("Enter capacity in tons: ");
+ 				((HeavyMotorVehicle)vehicles[i]).capacityInTons = scanner.nextInt();
+ 			}
+ 		}
+ 		System.out.println("\nVehicle Information: ");
+ 		for (int i = 0; i < n; i++) 
+		{
+ 			if (vehicles[i] instanceof LightMotorVehicle)
+ 			{
+ 				System.out.println("Type: Light Motor Vehicle");
+ 				System.out.println("Company: " + vehicles[i].company);
+ 				System.out.println("Price: " + vehicles[i].price);
+ 				System.out.println("Mileage: " + ((LightMotorVehicle)vehicles[i]).mileage);
+ 			} 
+			else if (vehicles[i] instanceof HeavyMotorVehicle) 
+			{
+ 				System.out.println("Type: Heavy Motor Vehicle");
+ 				System.out.println("Company: " + vehicles[i].company);
+ 				System.out.println("Price: " + vehicles[i].price);
+ 				System.out.println("Capacity in tons: " + ((HeavyMotorVehicle)vehicles[i]).capacityInTons);
+ 			}
+ 		}
+ 	}
+}

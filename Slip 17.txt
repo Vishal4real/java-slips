@@ -1,0 +1,153 @@
+Q1.
+import java.util.Scanner;
+class Customer {
+String name;
+String phoneNumber;
+// Default constructor
+Customer() {
+name = "";
+phoneNumber = "";
+}
+// Parameterized constructor
+Customer(String n, String pn) {
+name = n;
+phoneNumber = pn;
+}
+}
+class Depositor extends Customer {
+int accno;
+double balance;
+// Default constructor
+Depositor() {
+accno = 0;
+balance = 0.0;
+}
+// Parameterized constructor
+Depositor(String n, String pn, int an, double b) {
+super(n, pn);
+accno = an;
+balance = b;
+}
+}
+class Borrower extends Depositor {
+int loanNo;
+double loanAmt;
+// Default constructor
+Borrower() {
+loanNo = 0;
+loanAmt = 0.0;
+}
+// Parameterized constructor
+Borrower(String n, String pn, int an, double b, int ln, double la) {
+super(n, pn, an, b);
+loanNo = ln;
+loanAmt = la;
+}
+}
+public class Slip17A {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read in the number of customers
+System.out.print("Enter the number of customers: ");
+int n = scanner.nextInt();
+// Create an array of Borrower objects
+Borrower[] customers = new Borrower[n];
+// Read in the details of each customer
+for (int i = 0; i < n; i++) {
+System.out.println("Enter details for customer " + (i+1) + ":");
+System.out.print("Name: ");
+String name = scanner.next();
+System.out.print("Phone number: ");
+String phoneNumber = scanner.next();
+System.out.print("Account number: ");
+int accno = scanner.nextInt();
+System.out.print("Balance: ");
+double balance = scanner.nextDouble();
+System.out.print("Loan number: ");
+int loanNo = scanner.nextInt();
+System.out.print("Loan amount: ");
+double loanAmt = scanner.nextDouble();
+// Create a Borrower object for this customer and add it to the array
+customers[i] = new Borrower(name, phoneNumber, accno, balance, loanNo, loanAmt);
+}
+for (int i = 0; i < n; i++)
+{
+System.out.println("\nDetails for customer " + (i+1) + ":");
+System.out.println("Name: " + customers[i].name);
+System.out.println("Phone number: " + customers[i].phoneNumber);
+System.out.println("Account number: " + customers[i].accno);
+System.out.println("Balance: " + customers[i].balance);
+System.out.println("Loan no.: " + customers[i].loanNo);
+System.out.println("Loan Amount: " + customers[i].loanAmt);
+}
+}
+}
+
+
+Q2.
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class TextBoxesAndButtons extends JFrame {
+// Declare the text boxes and buttons
+private JTextField textField1;
+private JTextField textField2;
+private JTextField textField3;
+private JButton button1;
+private JButton button2;
+public TextBoxesAndButtons() {
+// Set the frame properties
+setTitle("Text Boxes and Buttons");
+setSize(400, 200);
+setLocationRelativeTo(null);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+// Create the text boxes and buttons
+textField1 = new JTextField();
+textField2 = new JTextField();
+textField3 = new JTextField();
+button1 = new JButton("Concatenate");
+button2 = new JButton("Reverse");
+// Add action listeners to the buttons
+button1.addActionListener(new ConcatenateListener());
+button2.addActionListener(new ReverseListener());
+// Create a panel to hold the text boxes and buttons
+JPanel panel = new JPanel();
+panel.setLayout(new GridLayout(4, 2));
+// Add the text boxes and buttons to the panel
+panel.add(new JLabel("Enter a string:"));
+panel.add(textField1);
+panel.add(new JLabel("Enter another string:"));
+panel.add(textField2);
+panel.add(button1);
+panel.add(button2);
+panel.add(new JLabel("Result:"));
+panel.add(textField3);
+// Add the panel to the frame
+add(panel);
+}
+// Action listener for the Concatenate button
+class ConcatenateListener implements ActionListener {
+public void actionPerformed(ActionEvent e) {
+// Concatenate the strings and display the result in the third text box
+String s1 = textField1.getText();
+String s2 = textField2.getText();
+textField3.setText(s1 + s2);
+}
+}
+// Action listener for the Reverse button
+class ReverseListener implements ActionListener {
+public void actionPerformed(ActionEvent e) {
+// Reverse the string and display the result in the third text box
+String s = textField1.getText();
+StringBuilder sb = new StringBuilder(s);
+sb.reverse();
+textField3.setText(sb.toString());
+}
+}
+}
+public class Slip17B{
+public static void main(String[] args) {
+TextBoxesAndButtons frame = new TextBoxesAndButtons();
+frame.setVisible(true);
+}
+}

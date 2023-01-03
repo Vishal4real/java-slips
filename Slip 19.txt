@@ -1,0 +1,78 @@
+Q1.
+import java.io.*;
+public class Slip19A {
+static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+static int a[][] = new int[5][5];
+public static void main(String[] args) throws NumberFormatException, IOException {
+int m = 0, n = 0;
+System.out.print("Enter number of rows ");
+m = Integer.parseInt(sc.readLine());
+System.out.print("Enter number of columns ");
+n = Integer.parseInt(sc.readLine());
+if (m == n) {
+int i, j;
+System.out.println("Enter values for matrix: ");
+for (i = 0; i < m; i++) {
+for (j = 0; j < n; j++) {
+a[i][j] = Integer.parseInt(sc.readLine());
+}
+}
+System.out.println("Orignal Matrix :");
+for (i = 0; i < m; i++) {
+for (j = 0; j < n; j++) {
+System.out.print("[" + a[i][j] + "]");
+}
+System.out.println("");
+}
+// Calculate and display the sum of the diagonal elements
+int sum = 0;
+for (i = 0; i < m; i++) {
+sum += a[i][i];
+}
+System.out.println("Sum of diagonal elements: " + sum);
+} else {
+System.out.println("Rows not equal to columns");
+}
+}
+}
+
+Q2.
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+class ComboBoxExample
+{
+    JFrame f;
+JTextField t1;
+ComboBoxExample()
+{
+f=new JFrame("ComboBox Example");
+final JLabel label = new JLabel();
+t1=new JTextField(10);
+label.setHorizontalAlignment(JLabel.CENTER);
+label.setSize(400,100);
+JButton b=new JButton("Show");
+b.setBounds(200,100,75,20);
+String languages[]={"C","C++","C#","Java","PHP"};
+final JComboBox cb=new JComboBox(languages);
+cb.setBounds(50, 100,90,20);
+f.add(cb); f.add(label); f.add(b);
+f.add(t1);
+f.setLayout(new FlowLayout());
+f.setSize(350,350);
+f.setVisible(true);
+b.addActionListener(new ActionListener()
+{
+public void actionPerformed(ActionEvent e)
+{
+String data = "Programming language Selected: " +
+cb.getItemAt(cb.getSelectedIndex());
+t1.setText(data);
+}
+});
+}
+public static void main(String[] args)
+{
+new ComboBoxExample();
+}
+}

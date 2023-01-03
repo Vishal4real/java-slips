@@ -1,0 +1,130 @@
+Question:1
+public class MyNumber 
+{
+	private int x;
+	public MyNumber()
+	{
+ 		x=0;
+	}
+	public MyNumber(int x)
+	{
+ 		this.x=x;
+	}
+	public boolean isNegative()
+	{
+ 		if(x<0)
+ 		return true;
+		else return false;
+	}
+	public boolean isPositive()
+	{
+ 		if(x>0)
+ 		return true;
+ 		else return false;
+	}
+	public boolean isZero()
+	{
+ 		if(x==0)
+ 		return true;
+		else return false;
+	}
+	public boolean isOdd()
+	{
+ 		if(x%2!=0)
+ 		return true;
+ 		else return false;
+	}
+	public boolean isEven()
+	{
+ 		if(x%2==0)
+ 		return true;
+ 		else return false;
+	}
+ 	public static void main(String [] args) throws ArrayIndexOutOfBoundsException
+	{
+ 		int x=Integer.parseInt(args[0]);
+ 		MyNumber m=new MyNumber(x);
+ 		if(m.isNegative())
+ 		System.out.println("Number is Negative");
+ 		if(m.isPositive())
+ 		System.out.println("Number is Positive");
+ 		if(m.isEven())
+ 		System.out.println("Number is Even");
+		if(m.isOdd())
+ 		System.out.println("Number is Odd");
+ 		if(m.isZero())
+ 		System.out.println("Number is Zero");
+	}
+}
+
+Question:2
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+public class Main extends JFrame 
+{
+	JTextField txtSGD, txtUSD, txtEuro;
+	JButton btnConvert;
+	public Main() 
+	{
+ 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(4, 2));
+ 		panel.add(new JLabel("Singapore Dollars: "));
+		txtSGD = new JTextField();
+ 		panel.add(txtSGD);
+ 		panel.add(new JLabel("US Dollars: "));
+ 		txtUSD = new JTextField();
+		panel.add(txtUSD);
+ 		panel.add(new JLabel("Euros: "));
+ 		txtEuro = new JTextField();
+ 		panel.add(txtEuro);
+ 		btnConvert = new JButton("Convert");
+ 		btnConvert.addActionListener(new ActionListener() 
+		{
+ 			public void actionPerformed(ActionEvent e) 
+			{
+ 				if (!txtSGD.getText().isEmpty()) 
+				{
+					double sgd = Double.parseDouble(txtSGD.getText());
+ 					txtUSD.setText(String.format("%.2f", sgd / 1.41));
+					txtEuro.setText(String.format("%.2f", sgd / 0.65));
+ 				}
+				 else if (!txtUSD.getText().isEmpty()) 
+				{
+				double usd = Double.parseDouble(txtUSD.getText());
+ 				txtSGD.setText(String.format("%.2f", usd * 1.41));
+ 				txtEuro.setText(String.format("%.2f", usd / 0.92));
+ 				} 
+				else if (!txtEuro.getText().isEmpty()) 
+				{
+ 					double euro = Double.parseDouble(txtEuro.getText());
+ 					txtSGD.setText(String.format("%.2f", euro * 0.65));
+ 					txtUSD.setText(String.format("%.2f", euro * 0.92));
+ 				}
+			}
+ 		});
+ 		panel.add(btnConvert);
+ 		add(panel);
+ 		setTitle("Currency Converter");
+ 		setSize(300, 150);
+ 		setLocationRelativeTo(null);
+ 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) 
+	{
+ 		EventQueue.invokeLater(new Runnable() 
+		{
+ 			public void run() 
+			{
+				Main ex = new Main();
+ 				ex.setVisible(true);
+			}
+ 		});
+	}
+}

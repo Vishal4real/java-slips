@@ -1,0 +1,175 @@
+Q1.
+import java.io.*;
+class Continent
+{
+	String con;
+	BufferedReader r=new BufferedReader(new InputStreamReader(System.in));
+	
+	void con_input() throws IOException
+	{	
+		System.out.println("Enter Conitent Name: ");
+		con =r.readLine();
+	}
+}
+class Country extends Continent
+{
+	String cou;
+	void cou_input() throws IOException
+	{
+		System.out.println("Enter Country Name: ");
+		cou=r.readLine();
+	}
+}
+
+class State extends Country
+{
+	String sta,place;
+	void sta_input() throws IOException
+	{
+		System.out.println("Enter State Name: ");
+		sta=r.readLine();
+		System.out.println("Enter Place Name: ");
+		place= r.readLine();
+	}
+	public static void main(String argsp[] )throws IOException
+	{
+		State s=new State();
+		s.con_input();
+		s.cou_input();
+		s.sta_input();
+		System.out.println(" Continent: "+s.con);
+		System.out.println(" Country: "+s.cou);	
+		System.out.println(" State: "+s.sta);
+		System.out.println(" Place: "+s.place);
+	}
+}
+
+Q2.
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Slip5B
+{	
+	public static void main(String[] args)
+	{
+		Scanner scan=new Scanner(System.in);
+		
+		int a[][]={{5,6,7},{8,9,10},{3,1,2}};	
+		int b[][]={{1,2,3},{4,5,6},{7,8,9}};
+
+		int c[][]=new int[3][3];
+		System.out.println("A= "+Arrays.deepToString(a));
+		System.out.println("B= "+Arrays.deepToString(b));
+
+		int choice;
+		do
+		{
+        		System.out.println("\nChoose the matrix operation: ");
+			System.out.println("------------------------------");
+			System.out.println("1. Addition");
+			System.out.println("2. Subtraction");
+			System.out.println("3. Multiplication");
+			System.out.println("4. Transpose");
+			
+
+			System.out.print("Enter your Choice: ");
+			choice=scan.nextInt();
+
+		switch (choice)
+		{
+		case 1:
+			c=add(a, b);
+			System.out.println("Sum of Matrix: ");
+			System.out.println(Arrays.deepToString(c));
+			break;
+		case 2:
+			c=sub(a, b);
+			System.out.println("Subtraction of Matrix: ");
+			System.out.println(Arrays.deepToString(c));
+			break;
+		case 3:
+			c=multiply(a, b);
+			System.out.println("Multiplication of Matrix: ");
+			System.out.println(Arrays.deepToString(c));
+			break;
+		case 4:
+			System.out.println("Transpose of the first Matrix: ");		
+			c=transpose(a);
+			System.out.println(Arrays.deepToString(c));
+			System.out.println("Transpose of the second Matrix: ");
+			System.out.println(Arrays.deepToString(c));
+			break;
+
+		default:
+			System.out.println("Invalid Input.");
+		}
+		}while (choice!=5);
+	}
+	public static int[][] add(int[][] a, int[][] b)
+	{
+		int row=a.length;
+		int column=a[0].length;
+		
+		int sum[][]=new int[row][column];
+
+		for (int i=0;i<row;i++)
+		{
+		  for (int j=0;j<column;j++)
+		  {
+			sum[i][j]=a[i][j] + b[i][j];
+		   }
+		}
+		return sum;
+	}
+	public static int[][] sub(int[][] a, int[][] b)
+	{
+		int row=a.length;
+		int column=a[0].length;
+
+		int diff[][]=new int[row][column];
+
+		for (int i=0;i<row;i++)
+		{
+		  for (int j=0;j<column;j++)
+		  {
+			diff[i][j]=a[i][j] + b[i][j];
+		   }
+		}
+		return diff;
+	}
+	public static int[][] multiply(int[][] a, int[][] b)
+	{
+		int row=a.length;
+		int column=a[0].length;
+
+		int product[][]=new int[row][column];
+
+		for (int i=0;i<row;i++)
+		{
+		  for (int j=0;j<column;j++)
+		  {
+			product[i][j]=0;
+			for(int k=0;k<a[0].length;k++)
+			{
+				product[i][j]=a[i][j] + b[i][j];
+			}
+		   }
+		}return product;
+	}
+	public static int[][] transpose(int [][] a)
+	{
+		int row=a.length;
+		int column=a[0].length;
+		
+		int temp[][]=new int[row][column];
+		
+		for (int i=0;i<row;i++)
+		{
+		  for (int j=0;j<column;j++)
+		  {
+			temp[i][j]=a[i][j];
+		   }
+		}
+		return temp;
+	}
+}

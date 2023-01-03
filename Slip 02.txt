@@ -1,0 +1,120 @@
+Q1.
+import java.util.Scanner;
+public class Slip2A
+{
+    public static void main(String[] Strings) 
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Input First name: ");
+
+        String Fname = input.nextLine();
+        System.out.print("Input last name: ");
+
+        String Lname = input.nextLine();
+        System.out.print("Input weight in KG: ");
+
+        double weight = input.nextDouble();
+        System.out.print("Input height in Meters: ");
+
+        double height = input.nextDouble();
+        double BMI = weight / (height * height);
+        System.out.print("Body Mass Index is " + BMI+"\n");
+    }
+}
+
+Q2.
+import java.io.*;
+
+class CricketPlayer
+{
+	String Name;
+	int no_of_ings;
+	int no_of_notout;
+	int total_runs;
+	float bat_avg;
+	
+	public CricketPlayer()
+	{
+		Name=" ";
+		no_of_ings=0;
+		no_of_notout=0;
+		total_runs=0;
+		bat_avg=0.0f;
+	}
+	
+	public CricketPlayer(String n, int i, int o, int r)
+	{
+		Name=n;
+		no_of_ings=i;
+		no_of_notout=o;
+		total_runs=r;
+	}
+	public static void average(CricketPlayer c[])
+	{
+		int n=c.length;
+		for(int i=0;i<n;i++)
+		c[i].bat_avg=(float)c[i].total_runs/c[i].no_of_ings;
+	}
+	public static void sortPlayer(CricketPlayer c[])
+	{
+		int n=c.length;
+		for(int i=0;i<n;i++)
+		{
+			for(int j=i+1;j<n;j++)
+			{
+				if(c[i].bat_avg<c[j].bat_avg)
+				{
+					String temp=c[i].Name;
+					int t=c[i].no_of_ings;
+					int e=c[i].no_of_notout;
+					int p=c[i].total_runs;
+					float m=c[i].bat_avg;
+		c[i].Name=c[j].Name;
+		c[i].no_of_ings=c[j].no_of_ings;
+		c[i].no_of_notout=c[j].no_of_notout;
+		c[i].total_runs=c[j].total_runs;
+		c[i].bat_avg=c[j].bat_avg;
+				c[j].Name=temp;
+				c[j].no_of_ings=t;
+				c[j].no_of_notout=e;
+				c[j].total_runs=p;
+				c[j].bat_avg=m;
+				}
+			}	
+		}
+	}
+	void print()
+	{
+		System.out.println("Name= "+Name);
+		System.out.println("No_of_Innings= "+no_of_ings);
+		System.out.println("No_of_Notouts= "+no_of_notout);
+		System.out.println("Total Runs= "+total_runs);
+		System.out.println("Average= "+bat_avg);
+		System.out.println("-----------------------------------------");
+	}
+}
+class Slip2B
+{
+	public static void main(String a[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How many Players: ");
+		int n=Integer.parseInt(br.readLine());
+		CricketPlayer cp[]= new CricketPlayer[n];
+		System.out.println("Enter Players: ");
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter Name, Innings, Notout, Total Runs: ");
+			String na=br.readLine();
+			int g=Integer.parseInt(br.readLine());
+			int o=Integer.parseInt(br.readLine());
+			int t=Integer.parseInt(br.readLine());
+			cp[i]=new CricketPlayer(na,g,o,t);
+		}
+		
+		CricketPlayer.average(cp);
+		CricketPlayer.sortPlayer(cp);
+		for(int i=0;i<n;i++)
+		cp[i].print();
+	}
+}

@@ -1,0 +1,146 @@
+Q1.
+import java.util.*;
+class Employee 
+{
+int id;
+String name;
+String deptname;
+double salary;
+static int count;
+Employee()
+{
+id=0;
+name="Name";
+deptname="Comp sci";
+salary=20000;
+}
+Employee(int id , String name , String deptname , double salary){
+this.id=id;
+this.name=name;
+this.deptname=deptname;
+this.salary=salary;
+count++;
+}
+void display() {
+System.out.println("[ID: " + id + " NAME: " + name + " DEPARTMENT NAME: " + deptname + " SALARY: " + salary + " ]");
+}
+}
+class Slip6A {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.println("How many Employees ");
+int number = sc.nextInt();
+Employee[] emp = new Employee[number];
+for(int j=0; j<number; j++)
+{
+System.out.println("Enter ID ");
+int id = sc.nextInt();
+System.out.println("Enter Name ");
+String name = sc.next();
+System.out.println("Enter Department name");
+String deptname = sc.next();
+System.out.println("Enter Salary");
+int salary = sc.nextInt();
+emp[j] = new Employee(id,name,deptname,salary);
+}
+for(int j=0; j<number; j++)
+{
+emp[j].display();
+}
+System.out.println("\nThere are total "+Employee.count+" Employees.");
+}
+}
+
+Q2.
+import java.util.Scanner;
+import java.io.*;
+abstract class order
+{
+	protected int id;
+	protected String desc;
+	order(int i,String d)
+	{
+		id=i;
+		desc=d;
+	}
+	public void display()
+	{
+
+		System.out.println("Id: "+id+" Description: "+desc);
+	}
+}
+class Purchase_Order extends order
+{
+	String c_name,v_name;
+	Purchase_Order(int id, String desc, String c,String v)
+	{
+		super(id,desc);
+		c_name=c;
+		v_name=v;
+	}
+
+	public void display()
+	{
+		super.display();
+		System.out.println(" Customer Name: "+c_name+" Vendor Name: "+v_name);
+	}
+}
+class Sales_Order extends order
+{
+	String c_name,v_name;
+	Sales_Order(int id, String desc, String c,String v)
+	{
+		super(id,desc);
+		c_name=c;
+		v_name=v;
+	}
+
+	public void display()
+	{
+		super.display();
+		System.out.println(" Customer Nmae: "+c_name+" Vendor Name: "+v_name);
+	}
+	
+}
+class Slip6B
+{
+	public static void main(String args[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		Purchase_Order[] po=new Purchase_Order[3];
+		Sales_Order[] so=new Sales_Order[3];
+		System.out.println("\n Enter Purchase Order details: ");
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("Enter ID: ");
+			int id =Integer.parseInt(br.readLine());		
+			System.out.println("Enter Description: ");
+			String na=br.readLine();
+			System.out.println("Enter Customer Name: ");
+			String ca=br.readLine();	
+			System.out.println("Enter Vendor Name: ");
+			String va=br.readLine();
+			po[i]=new Purchase_Order(id,na,ca,va);
+		}
+		System.out.println("\n Enter Sales Order Details: ");
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("Enter ID: ");
+			int id =Integer.parseInt(br.readLine());		
+			System.out.println("Enter Description: ");
+			String na=br.readLine();
+			System.out.println("Enter Customer Name: ");
+			String ca=br.readLine();	
+			System.out.println("Enter Vendor Name: ");
+			String va=br.readLine();
+			so[i]=new Sales_Order(id,na,ca,va);
+		}
+		System.out.println("\nPurchase Order Details: ");
+		for(int i=0;i<3;i++)
+			po[i].display();
+
+		System.out.println("\nSales Order Details: ");
+		for(int i=0;i<3;i++)
+			so[i].display();
+	}
+}

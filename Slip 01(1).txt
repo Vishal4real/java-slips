@@ -1,0 +1,87 @@
+Q1.
+
+class Slip1A 
+{
+public static int isPrime(int x)
+{
+int i;
+for (i = 2; i < x / 2 + 1; i++) {
+if (x % i == 0) {
+return 0;
+}
+}
+return 1;
+}
+public static void findPrimes(int n)
+{
+int i;
+for (i = 2; i <= n; i++) {
+if (isPrime(i) == 1)
+System.out.print(i + ", ");
+}
+System.out.println();
+}
+public static void main(String[] args)
+{
+if (args.length > 0) {
+int n = Integer.parseInt(args[0]);
+findPrimes(n);
+}
+else
+System.out.println("No command line " + "arguments found.");
+}
+}
+
+Q2.
+import java.io.*;
+abstract class Staff
+{
+	protected int id;
+	protected String name;
+	Staff(int i,String n)
+	{
+		id=i;
+		name=n;
+	}
+	public void display()
+	{
+		System.out.print("ID: " +id+ " NAME: " +name);
+	}
+}
+class Office_Staff extends Staff
+{
+	String dept,dept_loc;
+	Office_Staff(int id,String n,String d)
+	{
+		super(id,n);
+		dept=d;
+	}
+	public void display()
+	{
+		super.display();
+		System.out.println(" Dept: " +dept);
+	}
+}
+class Slip1B
+{
+	public static void main(String args[]) throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter Total No. of Staff: ");
+		int n=Integer.parseInt(br.readLine());
+		Office_Staff[] st=new Office_Staff [n];
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("*******Enter Information of Staff No"+(i+1)+"*******");
+			System.out.println("Enter ID: ");
+			int id=Integer.parseInt(br.readLine());
+			System.out.println("Enter Name: ");
+			String na=br.readLine();
+			System.out.println("Enter department: ");
+			String dept= br.readLine();
+			st[i]=new Office_Staff(id,na,dept);
+		}	
+		for(int i=0;i<n;i++)
+		st[i].display();
+	}
+}			
